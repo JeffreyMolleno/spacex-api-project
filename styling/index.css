@@ -8,6 +8,8 @@ body{
     background: black;
 }
 
+body::-webkit-scrollbar { width: 0 !important }
+
 .prim-font{
     font-family: 'Inconsolata', monospace;
 }
@@ -17,8 +19,7 @@ body{
 }
 
 .c-header{
-    height: 90px;   
-    /* box-shadow: 1px 1px 4px 0px #bdbdbd; */
+    height: 90px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -38,6 +39,11 @@ body{
     font-size: 1.2em;
     font-weight: 700;
     color: rgb(9, 83, 136);
+    cursor: pointer;
+}
+
+.c-menu-links li:hover{
+    border-bottom: 3px solid rgb(9, 83, 136);
 }
 
 .content-image-overlay{
@@ -45,11 +51,11 @@ body{
     background-size: cover;
     height: 100vh;
     width: 100%;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: -1;
-    opacity: 0.4;
+    opacity: 0.2;
 }
 
 /* for main content */
@@ -61,7 +67,6 @@ body{
     max-width: 900px;
     margin: 0 auto;
     margin-top: 100px;
-
 }
 
 .c-main-content-header{
@@ -115,16 +120,15 @@ body{
 
 /* footer */
 
-
 .c-footer-credit{
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
-    background:#1d1d1d;
+    background:#000000;
     width: 100%;
     display: flex;
     justify-content: space-around;
     height: 50px;
     align-items: center;
-    color: rgb(56, 56, 56);
+    color: rgb(65, 65, 65);
 }
