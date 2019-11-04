@@ -1,0 +1,130 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: black;
+}
+
+.prim-font{
+    font-family: 'Inconsolata', monospace;
+}
+
+.prim-color{
+    color:rgb(9, 83, 136);
+}
+
+.c-header{
+    height: 90px;   
+    /* box-shadow: 1px 1px 4px 0px #bdbdbd; */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background: white;
+}
+
+.c-spacex-logo{
+    height: 90px;
+}
+
+.c-menu-links{
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    list-style-type: none;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: rgb(9, 83, 136);
+}
+
+.content-image-overlay{
+    background: url('../graphics/mission-image-placeholder.jpg');
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0.4;
+}
+
+/* for main content */
+
+.c-main-content-container{
+    width: 90%;
+    color: white;
+    padding: 50px;
+    max-width: 900px;
+    margin: 0 auto;
+    margin-top: 100px;
+
+}
+
+.c-main-content-header{
+    margin: 20px 0;
+    font-size: 3em;
+    /* font-size: 700; */
+}
+
+.c-mission-name{
+    font-size: 3em;
+    margin: 20px 0;
+}
+
+.c-mission-story{
+    font-size: 1.5em;
+}
+
+.c-view-missions-timeline{
+    margin: 40px 0;
+    padding: 20px 0;
+    font-size: 1.2em;
+    border: 2px solid #A6242F;
+    border-radius: 50px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    cursor: pointer;
+}
+
+/* navigation */
+.c-navigations{
+    display: flex;
+    justify-content: flex-start;
+    /* color: rgb(75, 75, 75); */
+}
+
+.c-navigations section{
+    display: flex;
+    align-items: center;
+    /* font-size: 1.5em; */
+    margin-right:20px;
+    cursor: pointer;
+    height: 50px;
+}
+
+.c-navigations section:hover{
+    border-bottom: 2px solid white;
+}
+
+/* footer */
+
+
+.c-footer-credit{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background:#1d1d1d;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    height: 50px;
+    align-items: center;
+    color: rgb(56, 56, 56);
+}
