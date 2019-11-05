@@ -21,9 +21,14 @@ body::-webkit-scrollbar { width: 0 !important }
 .c-header{
     height: 90px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     background: white;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    transition: top 0.3s;
+    z-index: 1;
 }
 
 .c-spacex-logo{
@@ -40,6 +45,7 @@ body::-webkit-scrollbar { width: 0 !important }
     font-weight: 700;
     color: rgb(9, 83, 136);
     cursor: pointer;
+    margin-right: 100px;
 }
 
 .c-menu-links li:hover{
@@ -56,7 +62,40 @@ body::-webkit-scrollbar { width: 0 !important }
     left: 0;
     z-index: -1;
     opacity: 0.2;
+    /* transition: linear 1s; */
 }
+
+.animate-overlay-fadein{
+    animation-name: fadein;
+    animation-duration: 1s;
+}
+
+.animate-overlay-fadeout{
+    animation-name: fadeout;
+    animation-duration: 1s;
+}
+
+@keyframes fadein{
+    0%{opacity: 0;}
+}
+
+@keyframes fadeout{
+    100%{opacity: 0;}
+}
+
+
+
+/* .content-image-overlay-2{
+    background: url('../graphics/bg-sample-2.gif');
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0.1;
+} */
 
 /* for main content */
 
@@ -131,4 +170,48 @@ body::-webkit-scrollbar { width: 0 !important }
     height: 50px;
     align-items: center;
     color: rgb(65, 65, 65);
+    z-index: 1;
+}
+
+
+/* for timeline and extended details */
+
+.c-line{
+    width: 2px;
+    height: 100vh;
+    position: fixed;
+    background:#ffffff;
+    top: 0;
+    margin-left: 9px;
+}
+
+.c-circle-point{
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background: #ffffff;
+}
+
+.c-circle-point-container{
+    height: 100px;
+    position: relative;
+    left: -203px;
+    top: 262px; 
+}
+
+.c-main-content-extended{
+    position: relative;
+    top: 121px;
+    left: -14%;
+    margin-bottom: 100px
+}
+
+.c-extended-details-container{
+    width: 90%;
+    color: white;
+    padding: 50px;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    left: -55px;
 }
