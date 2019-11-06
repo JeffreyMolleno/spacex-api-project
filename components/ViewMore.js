@@ -18,7 +18,6 @@ export function AddtoViewMore(data){
 
     data.map(data=>{
         
-
         if(DATAOF === 'capsules'){
             headerName = `${data.type} ${data.capsule_serial}`;
             extendedContent = `${CheckIfNull(data.details)} <br><br> Status : ${data.status} <br><br> Original Launch Date : ${data.original_launch}`;

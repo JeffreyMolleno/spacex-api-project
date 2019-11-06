@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 body{
@@ -261,3 +262,54 @@ body::-webkit-scrollbar { width: 0 !important }
         margin-left: 200px;
     }
 } */
+
+
+/* New Start Content */
+
+.c-start-content-container{
+  position: absolute;
+  top: 25%;
+  left: 15%;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+
+}
+
+.c-start-project-motivations, .c-start-content-header{
+    margin: 40px 0;
+}
+
+.c-start-content-header{
+    font-size: 2em;
+}
+
+.c-start-project-motivations{
+    font-size: 1.5em;
+}
+
+.c-start-motivation{
+    opacity: 0.2;
+}
+
+.c-icon-rocket-up{
+    background: url(../graphics/rocket-3-A.png);
+    background-size: cover;
+    width: 80px;
+    height: 80px;
+    position: fixed;
+    bottom: 80px;
+    cursor: pointer;
+    left: 80px;
+}
+
+.rocket-move{
+    animation-name: rocketmove;
+    animation-duration: 3s;
+}
+
+@keyframes rocketmove{
+    0%{bottom: 80px;}
+    100%{bottom:120%}
+}

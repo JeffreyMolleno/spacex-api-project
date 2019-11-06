@@ -97,13 +97,10 @@ function previewDisplay(data){
     }
 
     if(locations[state.progression.current] == 'info'){
-        // let ndata = RandomIndex(data);
         
         headermode = 'SPACE X';
         maindetails = `FOUNDER: ${data.founder}`;
         maincaptions = ` ${data.summary}`;
-
-        // document.querySelector('.content-image-overlay').style.background = `url('${RandomIndex(bgCollectives.info)}')`;
 
         fadingin(bgCollectives.info);
     }
@@ -116,7 +113,6 @@ function previewDisplay(data){
         maincaptions = ` ${ndata.details} <br><br> STATUS: ${ndata.status.toUpperCase()}`;
 
         fadingin(bgCollectives.landpads);
-
     }
 
     if(locations[state.progression.current] == 'launches'){
@@ -141,7 +137,6 @@ function previewDisplay(data){
     }
 
     if(locations[state.progression.current] == 'missions'){
-
         let ndata = RandomIndex(data);
         
         headermode = 'MISSIONS';
@@ -150,7 +145,6 @@ function previewDisplay(data){
     }
 
     if(locations[state.progression.current] == 'payloads'){
-
         let ndata = RandomIndex(data);
         
         headermode = 'PAYLOAD';
@@ -161,7 +155,6 @@ function previewDisplay(data){
     }
 
     if(locations[state.progression.current] == 'rockets'){
-
         let ndata = RandomIndex(data);
         
         headermode = 'ROCKETS';
@@ -209,7 +202,6 @@ function show(target, type){
 }
 
 function defaultHides(){
-    // hide('.c-main-content-container');
     hide('.j-view-more-container');
 }
 
@@ -249,18 +241,28 @@ defaultHides();
 // Hide navigation bar when scrolling
 var prevScrollpos = window.pageYOffset;
 
+// var understart = true;
+
+prevScrollpos = 1000;
+
 window.onscroll = function() {
 
   var currentScrollPos = window.pageYOffset;
 
   if (prevScrollpos > currentScrollPos) {
     document.getElementsByClassName('j-header')[0].style.top = "0";
+    
+    // hide('.j-icon-rocket-up');
+
   } else {
     document.getElementsByClassName('j-header')[0].style.top = "-100px";
+
+    show('.j-icon-rocket-up');
   }
   prevScrollpos = currentScrollPos;
 }
 
+// Selectors
 
 document.querySelector('.j-nav-next').addEventListener('click', function(){
 
@@ -280,10 +282,6 @@ document.querySelector('.j-main-content').addEventListener('click',function(e){
 
         ViewMore(e.target.getAttribute('data-moreof'));
     }
-
-    // let line = document.getElementsByClassName('jcircle');
-
-    // document.getElementsByClassName('j-line')[0].style.left = (line[0].offsetLeft+window.screenX) + 'px';
 }) 
 
 document.querySelector('.j-home-link').addEventListener('click', function(){
@@ -295,6 +293,46 @@ document.querySelector('.j-info-link').addEventListener('click',function(){
     hide('.j-view-more-container');
     show('.c-main-content-container');
     getContentProgression('info').then(previewDisplay).catch(e=>console.log(e));
+
+    hide('.j-start-motivation')
+    hide('.j-start-content-container');
+    show('.content-image-overlay');
+    show('.c-main-content-container');
 });
 
-// hideMain();
+document.querySelector('.j-start-viewing').addEventListener('click',function(){
+    hide('.j-start-motivation')
+    hide('.j-start-content-container');
+    show('.content-image-overlay');
+    show('.c-main-content-container');
+    document.querySelector('.content-image-overlay').classList.add('animate-overlay-fadein');
+});
+
+
+document.querySelector('.j-icon-rocket-up').addEventListener('click',function(){
+    
+    document.querySelector('.j-icon-rocket-up').classList.add('rocket-move');
+
+    window.scroll({
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth'
+      });
+
+    setTimeout(function(){
+        document.querySelector('.j-icon-rocket-up').classList.remove('rocket-move');
+        
+        hide('.j-icon-rocket-up');
+    },3000);
+});
+
+function start(){
+    hide('.content-image-overlay');
+    hide('.j-icon-rocket-up');
+}
+
+// for testing
+hideMain();
+start();
+
+document.getElementsByClassName('j-header')[0].style.top = "0!important";
