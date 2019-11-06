@@ -88,20 +88,6 @@ body::-webkit-scrollbar { width: 0 !important }
     100%{opacity: 0;}
 }
 
-
-
-/* .content-image-overlay-2{
-    background: url('../graphics/bg-sample-2.gif');
-    background-size: cover;
-    height: 100vh;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    opacity: 0.1;
-} */
-
 /* for main content */
 
 .c-main-content-container{

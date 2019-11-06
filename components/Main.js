@@ -286,6 +286,10 @@ document.querySelector('.j-main-content').addEventListener('click',function(e){
 document.querySelector('.j-home-link').addEventListener('click', function(){
     hide('.j-view-more-container');
     show('.c-main-content-container');
+    hide('.j-start-motivation')
+    hide('.j-start-content-container');
+    show('.content-image-overlay');
+
 });
 
 document.querySelector('.j-info-link').addEventListener('click',function(){
