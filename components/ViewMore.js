@@ -1,10 +1,9 @@
 import GetAPI from './GetAPI.js';
-
-var DATAOF = '';
+import CheckIfNull from './CheckIfNull.js';
 
 export default function ViewMore(dataof) {
 
-    DATAOF =dataof;
+    DATAOF = dataof;
 
     GetAPI(dataof).then(AddtoViewMore).catch(e=>alert(e));
 }
@@ -22,27 +21,27 @@ export function AddtoViewMore(data){
 
         if(DATAOF === 'capsules'){
             headerName = `${data.type} ${data.capsule_serial}`;
-            extendedContent = `${data.details} <br><br> STATUS : ${data.status} <br><br> ORIGINAL LAUNCH DATE : ${data.original_launch}`;
+            extendedContent = `${CheckIfNull(data.details)} <br><br> Status : ${data.status} <br><br> Original Launch Date : ${data.original_launch}`;
         }
         if(DATAOF === 'cores'){
-            headerName = `${data.core_serial}`;
-            extendedContent = `${data.details} <br><br> STATUS : ${data.status} <br><br> ORIGINAL LAUNCH DATE : ${data.original_launch}`;
+            headerName = `${CheckIfNull(data.core_serial)}`;
+            extendedContent = `${CheckIfNull(data.details)} <br><br> Status : ${data.status} <br><br> Original Launch Date : ${CheckIfNull(data.original_launch)}`;
         }
         if(DATAOF === 'dragons'){
             headerName = `${data.name}`;
-            extendedContent = `${data.description} <br><br> ACTIVE : ${data.active} <br><br> FIRST FLIGHT: ${data.first_flight}`;
+            extendedContent = `${data.description} <br><br> Active : ${data.active} <br><br> First Flight: ${data.first_flight}`;
         }
         if(DATAOF === 'history'){
             headerName = `${data.title}`;
-            extendedContent = `${data.details} <br><br> EVENT DATE : ${data.event_date_utc}`;
+            extendedContent = `${data.details} <br><br> Event Date : ${data.event_date_utc}`;
         }
         if(DATAOF === 'landpads'){
             headerName = `${data.full_name}`;
-            extendedContent = `${data.details} <br><br> LOCATION : ${data.location.name},${data.location.region} <br><br> STATUS : ${data.status}`;
+            extendedContent = `${data.details} <br><br> Location : ${data.location.name},${data.location.region} <br><br> Status : ${data.status}`;
         }
         if(DATAOF === 'launches'){
             headerName = `${data.mission_name}`;
-            extendedContent = `${data.details} <br><br> Launch Year : ${data.launch_year} <br><br> Rocket Used : ${data.rocket.rocket_name} (${data.rocket.rocket_type})`;
+            extendedContent = `${CheckIfNull(data.details)} <br><br> Launch Year : ${data.launch_year} <br><br> Rocket Used : ${data.rocket.rocket_name} (${data.rocket.rocket_type})`;
         }
         if(DATAOF === 'launchpads'){
             headerName = `${data.name}`;
@@ -50,11 +49,11 @@ export function AddtoViewMore(data){
         }
         if(DATAOF === 'missions'){
             headerName = `${data.mission_name}`;
-            extendedContent = `${data.description}<br><br> Manufacturers : ${data.manufacturers.join(', ')}<br><br> Payloads(ID) : ${data.payload_ids.join(' , ')}`;
+            extendedContent = `${data.description}<br><br> Manufacturer/s : ${data.manufacturers.join(', ')}<br><br> Payloads(ID) : ${data.payload_ids.join(' , ')}`;
         }
         if(DATAOF === 'payloads'){
             headerName = `${data.payload_id}`;
-            extendedContent = `Customer/s : ${data.customers}<br><br> Manufacturers : ${data.manufacturer}<br><br> Orbit Parameters <br><br> Reference System: ${data.orbit_params.reference_system}<br> Regime : ${data.orbit_params.regime}`;
+            extendedContent = `Customer/s : ${data.customers}<br><br> Manufacturer/s : ${CheckIfNull(data.manufacturer)}<br><br> Orbit Parameters <br><br> Reference System: ${CheckIfNull(data.orbit_params.reference_system)}<br> Regime : ${CheckIfNull(data.orbit_params.regime)}`;
         }
         if(DATAOF === 'rockets'){
             headerName = `${data.rocket_name}`;
@@ -78,7 +77,6 @@ export function AddtoViewMore(data){
                     </section>
                 </section>
             </section>`;
- 
     });
 
     document.querySelector('.j-extended-details-container').innerHTML = res;
@@ -89,3 +87,4 @@ export function AddtoViewMore(data){
 }
 
 const line = `<section class="c-line j-line"></section>`;
+var DATAOF = '';

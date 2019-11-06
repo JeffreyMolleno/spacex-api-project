@@ -18,7 +18,11 @@ body::-webkit-scrollbar { width: 0 !important }
     color:rgb(9, 83, 136);
 }
 
-.c-header{
+.capitalize {
+    text-transform: capitalize;
+  }
+
+.c-header{  
     height: 90px;
     display: flex;
     justify-content: space-between;
@@ -121,6 +125,7 @@ body::-webkit-scrollbar { width: 0 !important }
 
 .c-mission-story{
     font-size: 1.5em;
+    line-height: 43px;
 }
 
 .c-view-missions-timeline{
@@ -182,12 +187,12 @@ body::-webkit-scrollbar { width: 0 !important }
     position: fixed;
     background:#ffffff;
     top: 0;
-    margin-left: 9px;
+    margin-left: 6px;
 }
 
 .c-circle-point{
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     border-radius: 100%;
     background: #ffffff;
 }
@@ -202,6 +207,7 @@ body::-webkit-scrollbar { width: 0 !important }
 .c-main-content-extended{
     position: relative;
     top: 121px;
+    /* left: 14%; */
     left: -14%;
     margin-bottom: 100px
 }
@@ -215,3 +221,43 @@ body::-webkit-scrollbar { width: 0 !important }
     position: relative;
     left: -55px;
 }
+
+
+@media screen and ( max-width: 1300px) {
+    .c-extended-details-container {
+        margin-left: 0;
+        padding-right: none;
+        left: 0;
+   
+    }
+    
+    .c-main-content-extended{
+        left: 14%;
+    }
+
+    .c-circle-point-container{
+        left: 0;
+    }
+
+    /* .c-header{
+        flex-direction: column;
+    } */
+
+    .c-menu-links{
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+/* @media screen and (max-width: 1210px) {
+    .c-extended-details-container {
+        margin-left: 54px;
+        padding-right: 171px;
+    }
+}
+
+@media screen and (min-width: 1420px) {
+    .c-extended-details-container {
+        margin-left: 200px;
+    }
+} */

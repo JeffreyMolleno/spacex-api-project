@@ -1,9 +1,9 @@
 import GetAPI from './GetAPI.js'; 
 import RandomIndex from './RandomIndex.js';
 import ViewMore from './ViewMore.js';
+import CheckIfNull from './CheckIfNull.js';
 
 // For Navigations
-
 const locations = [
     'capsules',
     'cores',
@@ -26,7 +26,7 @@ var state = {
     }
 }
 
-var bgCollectives = {
+const bgCollectives = {
     capsules:[],
     landpads:['https://live.staticflickr.com/4138/35231792310_78192738ec_3k.jpg',
     'https://live.staticflickr.com/4341/36073878143_8aa04b684b_3k.jpg'],
@@ -61,7 +61,7 @@ function previewDisplay(data){
                 
         headermode = 'CAPSULES';
         maindetails = ` ${ndata.type} ${ndata.capsule_serial}`;
-        maincaptions = `${ndata.details}`;
+        maincaptions = `${CheckIfNull(ndata.details)}`;
     }
 
     if(locations[state.progression.current] == 'cores'){
@@ -69,10 +69,10 @@ function previewDisplay(data){
             let ndata = RandomIndex(data);
                 
             headermode = 'CORES';
-            maindetails = `${ndata.core_serial}`;
-            maincaptions = ` ${ndata.details}`;
+            maindetails = `${CheckIfNull(ndata.core_serial)}`;
+            maincaptions = ` ${CheckIfNull(ndata.details)}`;
         }
-        
+
         headermode = 'CORES';
         maindetails = `${ndata.core_serial}`;
         maincaptions = ` ${ndata.details}`;
@@ -93,7 +93,7 @@ function previewDisplay(data){
         
         headermode = 'HISTORY';
         maindetails = `${ndata.title}`;
-        maincaptions = ` ${ndata.details} <br><br> ${ndata.event_date_utc}`;
+        maincaptions = ` ${ndata.details} <br> ${ndata.event_date_utc}`;
     }
 
     if(locations[state.progression.current] == 'info'){
@@ -124,7 +124,7 @@ function previewDisplay(data){
         
         headermode = 'LAUNCHES';
         maindetails = `${ndata.mission_name}`;
-        maincaptions = ` ${ndata.details} <br><br> Launched from : ${ndata.launch_site.site_name_long}`;
+        maincaptions = ` ${CheckIfNull(ndata.details)} <br><br> Launched from : ${ndata.launch_site.site_name_long}`;
 
         if(ndata.flickr_images){
             fadingin(ndata.flickr_images);
@@ -157,7 +157,7 @@ function previewDisplay(data){
         maindetails = `${ndata.payload_id}`;
         maincaptions = `A commisioned payload of ${ndata.customers.map(data=>{
             return `${data}`;
-        })} that is manufactured by ${ndata.manufacturer} delivered into a ${ndata.orbit_params.reference_system} ${ndata.orbit_params.regime} orbit.`;
+        })} that is manufactured by ${CheckIfNull(ndata.manufacturer)} delivered into a ${CheckIfNull(ndata.orbit_params.reference_system)} ${CheckIfNull(ndata.orbit_params.regime)} orbit.`;
     }
 
     if(locations[state.progression.current] == 'rockets'){
@@ -195,8 +195,10 @@ function previewDisplay(data){
         </section>`;
 
     document.querySelector('.j-main-content').innerHTML = res;
+    
+    locations[state.progression.current] === 'roadster' || locations[state.progression.current] === 'info'?
+    hide('.c-view-missions-timeline'):show('.c-view-missions-timeline','flex');
 }
-
 
 function hide(target){
     document.querySelector(target).style.display = 'none';
@@ -216,16 +218,13 @@ function hideMain(){
 }
 
 function fadesin(ndata){
-    // setTimeout(() => {
     
         document.querySelector('.content-image-overlay').style.background = `url('${RandomIndex(ndata)}')`;
 
         document.querySelector('.content-image-overlay').classList.add('animate-overlay-fadein');
 
         document.querySelector('.content-image-overlay').style.backgroundSize = `cover`;
-        
-    // }, 1000);
-    
+
     setTimeout(function(){
         document.querySelector('.content-image-overlay').classList.remove('animate-overlay-fadein');
     },1000);
