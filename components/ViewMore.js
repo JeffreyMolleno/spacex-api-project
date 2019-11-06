@@ -14,8 +14,6 @@ export function AddtoViewMore(data){
     let headerName = '';
     let extendedContent = '';
 
-    console.log(DATAOF);
-
     data.map(data=>{
         
         if(DATAOF === 'capsules'){

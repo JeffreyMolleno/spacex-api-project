@@ -277,9 +277,8 @@ document.querySelector('.j-nav-prev').addEventListener('click', function(){
 document.querySelector('.j-main-content').addEventListener('click',function(e){
     if(e.target.getAttribute('data-moreof')&&e.target.getAttribute('data-moreof')!='info'&&e.target.getAttribute('data-moreof')!='roadster'){
         hideMain();
-
         show('.j-view-more-container');
-
+        hide('.j-icon-rocket-up');
         ViewMore(e.target.getAttribute('data-moreof'));
     }
 }) 
@@ -317,11 +316,11 @@ document.querySelector('.j-icon-rocket-up').addEventListener('click',function(){
         top: 0, 
         left: 0, 
         behavior: 'smooth'
-      });
+    });
 
     setTimeout(function(){
         document.querySelector('.j-icon-rocket-up').classList.remove('rocket-move');
-        
+
         hide('.j-icon-rocket-up');
     },3000);
 });
