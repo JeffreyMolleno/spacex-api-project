@@ -42,7 +42,7 @@ export function AddtoViewMore(data){
         }
         if(DATAOF === 'launchpads'){
             headerName = `${data.name}`;
-            extendedContent = `${data.site_name_long} <br><br> ${data.details} <br><br> Launched Vehicles : ${data.vehicles_launched.join(' , ')}`;
+            extendedContent = `${data.site_name_long} <br><br> ${data.details} <br><br> Launched Vehicles : ${data.vehicles_launched.join(' , ')} <br><br> Status : ${data.status}`;
         }
         if(DATAOF === 'missions'){
             headerName = `${data.mission_name}`;

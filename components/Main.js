@@ -9,14 +9,14 @@ const locations = [
     'cores',
     'dragons',
     'history',
-    'info',
     'landpads',
     'launches',
     'launchpads',   
     'missions',
     'payloads',
     'rockets',
-    'roadster'
+    'roadster',
+    'info'
 ];
 
 var state = {
@@ -30,7 +30,11 @@ const bgCollectives = {
     capsules:[],
     landpads:['https://live.staticflickr.com/4138/35231792310_78192738ec_3k.jpg',
     'https://live.staticflickr.com/4341/36073878143_8aa04b684b_3k.jpg'],
-    info:['https://cdn.vox-cdn.com/thumbor/XM6cF9lk2KslumFtuKEmetGLl3M=/0x0:3000x2000/2070x1164/filters:focal(1260x760:1740x1240):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/62153379/REC_Elon_LedeImage__1_.0.png']
+    info:['https://cdn.vox-cdn.com/thumbor/XM6cF9lk2KslumFtuKEmetGLl3M=/0x0:3000x2000/2070x1164/filters:focal(1260x760:1740x1240):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/62153379/REC_Elon_LedeImage__1_.0.png'],
+    launchpads:['https://live.staticflickr.com/65535/48052269657_f21b232e79_3k.jpg','https://live.staticflickr.com/4505/36984623903_f0e7c4367b_3k.jpg'],
+    rockets:['https://live.staticflickr.com/4654/25254688767_1c6f195789_3k.jpg','https://live.staticflickr.com/4696/40126460511_6d7a260c20_3k.jpg','https://live.staticflickr.com/7834/40628437283_6021ece41b_3k.jpg','https://live.staticflickr.com/65535/48954138902_4913a18600_3k.jpg'],
+    cores:['https://live.staticflickr.com/4471/37388002420_ebd36f661d_3k.jpg']
+
 }
 
 function getContentProgression(dir){
@@ -71,6 +75,8 @@ function previewDisplay(data){
             headermode = 'CORES';
             maindetails = `${CheckIfNull(ndata.core_serial)}`;
             maincaptions = ` ${CheckIfNull(ndata.details)}`;
+
+        fadingin(bgCollectives.cores);
         }
 
         headermode = 'CORES';
@@ -99,8 +105,12 @@ function previewDisplay(data){
     if(locations[state.progression.current] == 'info'){
         
         headermode = 'SPACE X';
-        maindetails = `FOUNDER: ${data.founder}`;
-        maincaptions = ` ${data.summary}`;
+        maindetails = `Founded by ${data.founder}`;
+        maincaptions = ` ${data.summary} <br> <section class="c-links-out">
+        <a target='_blanck' href="https://www.flickr.com/photos/spacex/"><img src="./graphics/fb-icon.png"></a>
+        <a target='_blanck' href="${data.links.twitter}"><img src="./graphics/tw-icon.png"></a>
+        <a target='_blanck' href="https://www.youtube.com/user/spacexchannel"><img src="./graphics/yt-icon.png"></a>
+    </section>`;
 
         fadingin(bgCollectives.info);
     }
@@ -134,6 +144,9 @@ function previewDisplay(data){
         headermode = 'LAUNCH PADS';
         maindetails = `${ndata.name}`;
         maincaptions = `${ndata.site_name_long}  <br><br> ${ndata.details} <br><br> STATUS : ${ ndata.status.toUpperCase()}`;
+
+        fadingin(bgCollectives.launchpads);
+
     }
 
     if(locations[state.progression.current] == 'missions'){
@@ -160,6 +173,8 @@ function previewDisplay(data){
         headermode = 'ROCKETS';
         maindetails = `${ndata.rocket_name}`;
         maincaptions = `${ndata.description} <br><br> First Flight : ${ndata.first_flight}`;
+
+        fadingin(bgCollectives.rockets);
     }
 
     if(locations[state.progression.current] == 'roadster'){
@@ -295,7 +310,10 @@ document.querySelector('.j-home-link').addEventListener('click', function(){
 document.querySelector('.j-info-link').addEventListener('click',function(){
     hide('.j-view-more-container');
     show('.c-main-content-container');
+
     getContentProgression('info').then(previewDisplay).catch(e=>console.log(e));
+
+    state.progression.current = 11;
 
     hide('.j-start-motivation')
     hide('.j-start-content-container');
@@ -339,3 +357,18 @@ hideMain();
 start();
 
 document.getElementsByClassName('j-header')[0].style.top = "0!important";
+
+
+setTimeout(function(){
+
+    document.querySelector('.j-start-motivation').classList.add('animate-overlay-fadein');
+
+    document.querySelector('.j-start-motivation').style.background = `url('https://live.staticflickr.com/65535/48129269942_618314a6e4_3k.jpg')`;
+    document.querySelector('.j-start-motivation').style.left = 0;
+
+    document.querySelector('.j-start-motivation').style.backgroundSize = `cover`;
+    //here
+    
+
+    document.querySelector('.j-frame-embed').style.display = `none`;
+},60000)

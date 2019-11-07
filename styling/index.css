@@ -36,6 +36,10 @@ body::-webkit-scrollbar { width: 0 !important }
     z-index: 1;
 }
 
+.c-menu-links-container{
+    margin-right: 50px;
+}
+
 .c-spacex-logo{
     height: 90px;
 }
@@ -241,6 +245,7 @@ body::-webkit-scrollbar { width: 0 !important }
 
 .c-start-project-motivations, .c-start-content-header{
     margin: 40px 0;
+    width: 800px;
 }
 
 .c-start-content-header{
@@ -252,7 +257,8 @@ body::-webkit-scrollbar { width: 0 !important }
 }
 
 .c-start-motivation{
-    opacity: 0.2;
+    opacity: 0.3;
+    background-size: cover;
 }
 
 .c-icon-rocket-up{
@@ -274,6 +280,22 @@ body::-webkit-scrollbar { width: 0 !important }
 @keyframes rocketmove{
     0%{bottom: 80px;}
     100%{bottom:120%}
+}
+
+
+
+/* outer links */
+
+.c-links-out a img{
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    cursor: pointer;
+    background-size: cover;
+}
+
+.c-links-out{
+    margin-top: 40px;
 }
 
 @media screen and ( max-width: 1300px) {
