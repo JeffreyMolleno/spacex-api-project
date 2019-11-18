@@ -240,12 +240,12 @@ body::-webkit-scrollbar { width: 0 !important }
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-
+  margin-bottom: 90px;
 }
 
 .c-start-project-motivations, .c-start-content-header{
     margin: 40px 0;
-    width: 800px;
+    width: 50%;
 }
 
 .c-start-content-header{

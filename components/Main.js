@@ -371,4 +371,4 @@ setTimeout(function(){
     
 
     document.querySelector('.j-frame-embed').style.display = `none`;
-},60000)
+},1000)
