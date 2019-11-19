@@ -7,8 +7,8 @@ import CheckIfNull from '../API/CheckIfNull'
 import {Link} from 'react-router-dom';
 
 export class Catalog extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
 
         this.state={
             locations : [
@@ -25,7 +25,7 @@ export class Catalog extends Component {
                 'roadster'
             ],
             progression:{
-                current:0
+                current: 0
             },
             PreviewContent:{
                 mainDetails: '',
@@ -35,6 +35,13 @@ export class Catalog extends Component {
     }
 
     componentDidMount(){
+
+        // this.setState({
+        //     progression:{
+        //         current: this.props.match.params.id ? this.state.locations[this.props.match.params.id] : 0
+        //     }
+        // });
+
        GetAPI('missions').then(data=>{
             let  initData = RandomIndex(data);
             this.setState({

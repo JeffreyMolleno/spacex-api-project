@@ -211,9 +211,8 @@ body::-webkit-scrollbar { width: 0 !important }
 .c-main-content-extended{
   position: relative;
   top: 121px;
-  /* left: 14%; */
   left: -14%;
-  margin-bottom: 100px
+  margin-bottom: 50px
 }
 
 .c-extended-details-container{
@@ -225,9 +224,6 @@ body::-webkit-scrollbar { width: 0 !important }
   position: relative;
   left: -55px;
 }
-
-
-
 
 /* @media screen and (max-width: 1210px) {
   .c-extended-details-container {
@@ -283,11 +279,31 @@ margin-bottom: 90px;
   bottom: 80px;
   cursor: pointer;
   left: 5%;
+  display: none;
 }
 
 .rocket-move{
   animation-name: rocketmove;
   animation-duration: 3s;
+}
+
+.c-leadCaption-expanded{
+  font-size: 3em;
+  position: relative;
+  left: -14%;
+  /* border-bottom: rgb(0, 25, 107) solid 3px; */
+  /* width: 50px; */
+  top: 95px;
+}
+
+.c-goback-catalog{
+  color: #414141;
+  cursor: pointer;
+}
+
+.c-goback-catalog:hover{
+  color: #ffffff;
+  border-bottom: white solid 3px;
 }
 
 @keyframes rocketmove{
@@ -310,7 +326,13 @@ margin-bottom: 90px;
 }
 
 @media screen and ( max-width: 1300px) {
-  .c-extended-details-container {
+
+  .c-leadCaption-expanded {
+    margin-left: 0;
+    padding-right: none;
+    left: 14%;
+  }%
+  .c-extended-details-container{
       margin-left: 0;
       padding-right: none;
       left: 0;

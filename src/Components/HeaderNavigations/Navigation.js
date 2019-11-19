@@ -23,7 +23,7 @@ export default function Navigation() {
                         </li>
                     </Link>
 
-                    <Link to='/api'>
+                    <Link to='/info'>
                         <li className="c-search-link prim-color"><a target="_blank">
                             INFO
                         </a></li>

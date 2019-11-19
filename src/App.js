@@ -11,7 +11,6 @@ function App() {
         <Navigation/>
         <NavRouter/>
       </Router>
-
       <div class="content-image-overlay" />
     </div>
   );

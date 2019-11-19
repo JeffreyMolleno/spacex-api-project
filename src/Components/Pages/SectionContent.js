@@ -7,7 +7,6 @@ export default function SectionContent(props) {
             <section className="c-main-content-header">
                         <p className='prim-front'>{props.sectionTitle.toUpperCase()}</p>
             </section>
-
             <section className="c-main-story">
                 <section className="c-mission-name">
                         <p>{ReactHtmlParser(props.sectionDetails)}</p>
@@ -19,4 +18,3 @@ export default function SectionContent(props) {
         </div>
     )
 }
-
