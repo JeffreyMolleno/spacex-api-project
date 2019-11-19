@@ -148,6 +148,7 @@ function RocketUp(){
         if(document.querySelector('.j-icon-rocket-up')){
             document.querySelector('.j-icon-rocket-up').classList.remove('rocket-move');
             document.querySelector('.j-icon-rocket-up').style.display = 'none';
+            Scrolling = false;
         }
     },3000);
 

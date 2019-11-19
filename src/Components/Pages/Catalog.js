@@ -5,6 +5,8 @@ import GetAPI from '../API/GetAPI'
 import RandomIndex from '../API/RandomIndex'
 import CheckIfNull from '../API/CheckIfNull'
 import {Link} from 'react-router-dom';
+import Transition from '../Design/Transition';
+import BackGround,{BackGround__payload} from '../Design/BackGround';
 
 export class Catalog extends Component {
     constructor(props){
@@ -36,24 +38,20 @@ export class Catalog extends Component {
 
     componentDidMount(){
 
-        // this.setState({
-        //     progression:{
-        //         current: this.props.match.params.id ? this.state.locations[this.props.match.params.id] : 0
-        //     }
-        // });
-
-       GetAPI('missions').then(data=>{
-            let  initData = RandomIndex(data);
-            this.setState({
-                progression:{
-                        current: 7
-                },
-                PreviewContent:{
-                        mainDetails: initData.mission_name,
-                        mainCaptions: `Mission ID : ${initData.mission_id}
-                                            <br><br> ${initData.description}
-                                            <br><br>`
-                }
+       GetAPI('missions')
+            .then(data=>{
+                let  initData = RandomIndex(data);
+                
+                this.setState({
+                    progression:{
+                            current: 7
+                    },
+                    PreviewContent:{
+                            mainDetails: initData.mission_name,
+                            mainCaptions: `Mission ID : ${initData.mission_id}
+                                                <br><br> ${initData.description}
+                                                <br><br>`
+                    }
             });
        });
     }
@@ -64,6 +62,8 @@ export class Catalog extends Component {
         let headermode = '',
             maindetails = '',
             maincaptions = '';
+        
+        let transition = '';
 
         const {locations, progression, PreviewContent} = this.state;
 
@@ -89,8 +89,10 @@ export class Catalog extends Component {
             headermode = 'DRAGON';
             maindetails = `${ndata.name}`;
             maincaptions = ` ${ndata.description}`;
+
+            console.log('to bg : ' + ndata.flickr_images)
     
-            // fadingin(ndata.flickr_images);
+            BackGround__payload('',ndata.flickr_images);
         }
 
         if(locations[progression.current] == 'history'){
@@ -107,8 +109,8 @@ export class Catalog extends Component {
             headermode = 'LANDING PADS';
             maindetails = `${ndata.full_name}`;
             maincaptions = ` ${ndata.details} <br><br> STATUS: ${ndata.status.toUpperCase()}`;
-    
-            // fadingin(bgCollectives.landpads);
+
+            BackGround(locations[progression.current]);
         }
 
         if(locations[progression.current] == 'launches'){
@@ -118,9 +120,9 @@ export class Catalog extends Component {
             maindetails = `${ndata.mission_name}`;
             maincaptions = ` ${CheckIfNull(ndata.details)} <br><br> Launched from : ${ndata.launch_site.site_name_long}`;
     
-            // if(ndata.flickr_images){
-            //     fadingin(ndata.flickr_images);
-            // }
+            if(ndata.flickr_images){
+                BackGround__payload('',ndata.flickr_images);
+            }
         }
 
         if(locations[progression.current] == 'launchpads'){
@@ -131,7 +133,7 @@ export class Catalog extends Component {
             maindetails = `${ndata.name}`;
             maincaptions = `${ndata.site_name_long}  <br><br> ${ndata.details} <br><br> STATUS : ${ ndata.status.toUpperCase()}`;
     
-            // fadingin(bgCollectives.launchpads);
+            BackGround(locations[progression.current]);
         }
 
         if(locations[progression.current] == 'missions'){
@@ -158,8 +160,8 @@ export class Catalog extends Component {
             headermode = 'ROCKETS';
             maindetails = ndata.rocket_name;
             maincaptions = `${ndata.description} <br><br> First Flight : ${ndata.first_flight}`;
-            
-            // fadingin(bgCollectives.rockets);
+        
+            BackGround(locations[progression.current]);
         }
 
         if(locations[progression.current] == 'roadster'){
@@ -167,7 +169,7 @@ export class Catalog extends Component {
             maindetails = `${data.name}`;
             maincaptions = `${data.details}`;
     
-            // fadingin(data.flickr_images);
+            BackGround__payload('',data.flickr_images);
         }
 
         this.setState({
@@ -193,13 +195,14 @@ export class Catalog extends Component {
     
         console.log(progression.current + ' : ' + locations[progression.current])
         
-        GetAPI(locations[progression.current]).then(data=>this.previewDisplay(data));
+        GetAPI(locations[progression.current]).then(data=>this.previewDisplay(data)).catch(e=>{
+            console.log(e);
+        });
     }
-
 
     render() {
 
-        const {locations, progression, PreviewContent} = this.state;
+        const {locations, progression, PreviewContent} = this.state
 
         return (
             <section className="c-main-content-container prim-font">
@@ -227,12 +230,17 @@ export class Catalog extends Component {
                 <section className="c-main-content j-main-content j-extended-content">
                 
                     <SectionContent sectionTitle={locations[progression.current]} sectionDetails={PreviewContent.mainDetails} sectionCaptions={PreviewContent.mainCaptions} />
-    
-                    <Link to={`catalog/more-info/${locations[progression.current]}`}>
-                        <section className="c-view-missions-timeline prim-co" data-moreof={locations[progression.current]}>
-                            OTHER {locations[progression.current].toUpperCase()}
-                        </section>
-                    </Link>
+
+                    {
+                        <Link to={`catalog/more-info/${locations[progression.current]}`}
+
+                                style={locations[progression.current] === 'roadster' ? {display: 'none'} : {display:'block'} }
+                        >
+                            <section className="c-view-missions-timeline prim-co" data-moreof={locations[progression.current]}>
+                                OTHER {locations[progression.current].toUpperCase()}
+                            </section>
+                        </Link>
+                    }
 
                 </section>
 

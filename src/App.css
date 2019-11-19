@@ -81,7 +81,7 @@ body::-webkit-scrollbar { width: 0 !important }
   top: 0;
   left: 0;
   z-index: -1;
-  opacity: 0.2;
+  opacity: 0.25;
   /* transition: linear 1s; */
 }
 
@@ -330,8 +330,9 @@ margin-bottom: 90px;
   .c-leadCaption-expanded {
     margin-left: 0;
     padding-right: none;
-    left: 14%;
-  }%
+    left: 14px;
+  }
+  
   .c-extended-details-container{
       margin-left: 0;
       padding-right: none;

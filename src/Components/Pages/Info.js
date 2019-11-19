@@ -5,6 +5,8 @@ import SectionContent from './SectionContent' ;
 import fbicon from '../../graphics/fbicon.png';
 import twicon from '../../graphics/twicon.png';
 import yticon from '../../graphics/yticon.png';
+import Background from '../Design/BackGround';
+import BackGround from '../Design/BackGround';
 
 export default function Info() {
 
@@ -13,6 +15,8 @@ export default function Info() {
     const [caption, setCaptions] = useState('');
 
     useEffect(()=>{
+
+        BackGround('info');
 
         GetAPI('info').then(data=>{
 
