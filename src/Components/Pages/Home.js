@@ -11,7 +11,7 @@ export default function Home() {
                 SpaceX designs, manufactures and launches advanced rockets and spacecraft.The company was founded in 2002 to revolutionize space technology, with the ultimate goal of enabling people to live on other planets.
             </div>
 
-            <Link className="c-view-missions-timeline j-start-viewing" to='/catalog'>
+            <Link className="c-view-missions-timeline j-start-viewing" to='catalog'>
                     START EXPLORING
             </Link>
 

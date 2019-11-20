@@ -12,7 +12,7 @@ export default function NavRouter() {
             <Route path='/' exact component={Home}/>
             <Route path='/catalog' exact component={Catalog}/>  
             <Route path='/catalog/:id' exact component={Catalog}/>  
-            <Route path='/catalog/more-info/:id' exact component={ExpandedCatalog}/>
+            <Route path='/more-info/:id' exact component={ExpandedCatalog}/>
             <Route exact path='/info' component={Info}/>
         </Switch>
     )

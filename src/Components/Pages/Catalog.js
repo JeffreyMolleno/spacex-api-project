@@ -38,22 +38,50 @@ export class Catalog extends Component {
 
     componentDidMount(){
 
-       GetAPI('missions')
-            .then(data=>{
-                let  initData = RandomIndex(data);
-                
-                this.setState({
-                    progression:{
-                            current: 7
-                    },
-                    PreviewContent:{
-                            mainDetails: initData.mission_name,
-                            mainCaptions: `Mission ID : ${initData.mission_id}
-                                                <br><br> ${initData.description}
-                                                <br><br>`
-                    }
+        const {locations} = this.state;
+
+        console.log(locations[locations.indexOf(this.props.match.params.id)]);
+        if(this.props.match.params.id){
+
+            GetAPI(locations[locations.indexOf(this.props.match.params.id)]).then(data=>this.previewDisplay(data)).catch(e=>{
+                console.log(e);
             });
-       });
+
+            this.setState({
+                progression:{
+                    current: locations.indexOf(this.props.match.params.id)
+                }
+            });
+
+        }else{
+            GetAPI('missions').then(data=>this.previewDisplay(data)).catch(e=>{
+                console.log(e);
+            });
+
+            this.setState({
+                progression:{
+                    current: 7
+                }
+            });
+        }
+    }
+
+    getContentProgression(dir){
+
+        const {locations, progression, PreviewContent} = this.state;
+
+        if(dir === 'next'){
+            progression.current = (progression.current+1) < locations.length ?  progression.current+1:0;
+        }else if(dir === 'info'){
+            progression.current = 4;
+            return GetAPI('info');
+        }else{
+            progression.current = (progression.current-1) > -1 ?  progression.current-1: locations.length-1;
+        }
+        
+        GetAPI(locations[progression.current]).then(data=>this.previewDisplay(data)).catch(e=>{
+            console.log(e);
+        });
     }
 
     previewDisplay(data){
@@ -89,18 +117,18 @@ export class Catalog extends Component {
             headermode = 'DRAGON';
             maindetails = `${ndata.name}`;
             maincaptions = ` ${ndata.description}`;
-
-            console.log('to bg : ' + ndata.flickr_images)
     
             BackGround__payload('',ndata.flickr_images);
         }
 
         if(locations[progression.current] == 'history'){
             let ndata = RandomIndex(data);
+
+            let date = new Date(ndata.event_date_utc).toUTCString();
             
             headermode = 'HISTORY';
             maindetails = `${ndata.title}`;
-            maincaptions = `${ndata.details} <br> ${ndata.event_date_utc}`;
+            maincaptions = `${ndata.details} <br>${date}`;
         }
 
         if(locations[progression.current] == 'landpads'){
@@ -180,25 +208,7 @@ export class Catalog extends Component {
         });
     }
 
-    getContentProgression(dir){
-
-        const {locations, progression, PreviewContent} = this.state;
-
-        if(dir === 'next'){
-            progression.current = (progression.current+1) < locations.length ?  progression.current+1:0;
-        }else if(dir === 'info'){
-            progression.current = 4;
-            return GetAPI('info');
-        }else{
-            progression.current = (progression.current-1) > -1 ?  progression.current-1: locations.length-1;
-        }
     
-        console.log(progression.current + ' : ' + locations[progression.current])
-        
-        GetAPI(locations[progression.current]).then(data=>this.previewDisplay(data)).catch(e=>{
-            console.log(e);
-        });
-    }
 
     render() {
 
@@ -232,7 +242,7 @@ export class Catalog extends Component {
                     <SectionContent sectionTitle={locations[progression.current]} sectionDetails={PreviewContent.mainDetails} sectionCaptions={PreviewContent.mainCaptions} />
 
                     {
-                        <Link to={`catalog/more-info/${locations[progression.current]}`}
+                        <Link to={`/more-info/${locations[progression.current]}`}
 
                                 style={locations[progression.current] === 'roadster' ? {display: 'none'} : {display:'block'} }
                         >

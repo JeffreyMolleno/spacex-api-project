@@ -3,10 +3,6 @@ export default class Transition{
     constructor(elementReference, imagebg){
         this.elementReference = elementReference;
         this.imagebg = imagebg;
-        
-        // this.elementReference.style = Overlay;        
-        // this.elementReference.style.background =  `url(${this.imagebg})`;
-        // this.elementReference.style.backgroundSize =  `cover`;
     }
 
     FadeOut(){
@@ -41,45 +37,22 @@ export default class Transition{
     } 
 }
 
-const Overlay = {
-    backgroundSize: 'cover',
-    height: `100vh`,
-    width: `100%`,
-    position: `fixed`,
-    top: `0`,
-    left: `0`,
-    zIndex: `-1`,
-    opacity: `0.2`,
-    // background: ''
-}
 
-const fadein = `@keyframes fadein{
-    0%{opacity: 0},
-}`
-
-const fadeout = `@keyframes fadeout{
-    100%{ opacity: 0; }
-}`
-
-const animateFadein = {
-    animationName: fadein,
-    animationDuration: `1s`
-}
-
-const animateFadeOut = {
-    animationName: fadein,
-    animationDuration: `1s`
-}
-
-
-// const animateFadein = 
-
+// add this to css file]
 // .animate-overlay-fadein{
 //     animation-name: fadein;
 //     animation-duration: 1s;
-// }
-
-// .animate-overlay-fadeout{
+//   }
+  
+//   .animate-overlay-fadeout{
 //     animation-name: fadeout;
 //     animation-duration: 1s;
-// }
+//   }
+  
+//   @keyframes fadein{
+//     0%{opacity: 0;}
+//   }
+  
+//   @keyframes fadeout{
+//     100%{opacity: 0;}
+//   }

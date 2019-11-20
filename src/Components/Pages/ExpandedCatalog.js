@@ -22,15 +22,13 @@ export default function ExpandedCatalog(props) {
             </section>
 
             <section className='c-leadCaption-expanded'>
-                <p> <Link to={`/catalog`}> <span className='c-goback-catalog'>CATALOG  &gt;</span></Link> {props.match.params.id.toUpperCase()} </p>
+                <p> <Link to={`/catalog/${props.match.params.id}`}> <span className='c-goback-catalog'> GO   BACK </span> </Link> &gt;    {props.match.params.id.toUpperCase()} </p>
             </section>
 
                 {ReactHtmlParser(data)}
             </section>
-
             <a class="c-icon-rocket-up j-icon-rocket-up" onClick={RocketUp}>
             </a>
-
         </section>
     )
 }
@@ -40,8 +38,6 @@ export function AddtoViewMore(data, DATAOF){
     let res = '';
     let headerName = '';
     let extendedContent = '';
-    
-    console.log(data);
 
     data.map(data=>{
         
@@ -58,8 +54,11 @@ export function AddtoViewMore(data, DATAOF){
             extendedContent = `${data.description} <br><br> Active : ${data.active} <br><br> First Flight: ${data.first_flight}`;
         }
         if(DATAOF === 'history'){
+
+            let date = new Date(data.event_date_utc).toUTCString();
+            
             headerName = `${data.title}`;
-            extendedContent = `${data.details} <br><br> Event Date : ${data.event_date_utc}`;
+            extendedContent = `${data.details} <br><br> Event Date : ${date}`;
         }
         if(DATAOF === 'landpads'){
             headerName = `${data.full_name}`;
