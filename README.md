@@ -30,4 +30,4 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### Additional dependency
 
-This app also utilize the [https://www.npmjs.com/package/react-html-parser](react-html-parser). Use `npm install react-html-parser` to install.
+This app also utilize the [react-html-parser](https://www.npmjs.com/package/react-html-parser). Use `npm install react-html-parser` to install.
