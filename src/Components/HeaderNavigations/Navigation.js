@@ -11,7 +11,7 @@ export default function Navigation() {
             <div className="c-menu-links-container">
                 <ul className="c-menu-links">
 
-                    <Link to='/'>
+                    <Link to='/spacex-api-project'>
                         <li className="c-home-link j-home-link">
                             HOME
                         </li>

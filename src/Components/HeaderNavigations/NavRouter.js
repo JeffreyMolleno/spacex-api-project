@@ -9,7 +9,7 @@ import Info from '../Pages/Info';
 export default function NavRouter() {
     return (
         <Switch>
-            <Route path='/' exact component={Home}/>
+            <Route path='/spacex-api-project' exact component={Home}/>
             <Route path='/catalog' exact component={Catalog}/>  
             <Route path='/catalog/:id' exact component={Catalog}/>  
             <Route path='/more-info/:id' exact component={ExpandedCatalog}/>
